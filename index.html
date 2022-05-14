@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        .red{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainId" class="main">
+        <p id="paraOne" class="para"> paragraphe 1 </p>
+        <p class="para"> paragraphe 2 </p>
+        <p class="para"> paragraphe 3 </p>
+        <button class="plus"> + </button>
+        <p class="counter"> 0 </p>
+        <button class="minus"> - </button>
+        <input type="text">
+    </div>
+    <script>
+        // first step : DOM selectors
+        //id
+        var firstParagraph=document.getElementById('paraOne')
+        //tag Name (type)
+        var listOfPara=document.getElementsByTagName('p')
+        //className
+        var paraElements=document.getElementsByClassName('para')
+        //querySelector || querySelectorAll
+        var firstpara =document.querySelector('.para')
+        var allPara =document.querySelectorAll('.para')
+
+        // second step : attributes
+        //get
+        var attribute=firstpara.getAttribute('id')
+        // set attribute
+        firstpara.setAttribute('class',"para red")
+        firstpara.setAttribute('src',"blabla")
+        //remove attribute
+        firstpara.removeAttribute('src')
+        //DOM Manipulation : 
+            //style
+        firstpara.style.backgroundColor="green"
+        firstpara.style.fontSize="30px"
+            //text modification
+        firstpara.innerHTML="paragraph 6"
+        //create new node 
+            //list of steps :
+        var newElement=document.createElement('p')
+        var text=document.createTextNode('this is a new text')
+        var main=document.querySelector('#mainId')
+        newElement.appendChild(text)
+        main.appendChild(newElement)
+
+        // Events 
+        var plus=document.querySelector('.plus')
+        var minus=document.querySelector('.minus')
+        var counter=document.querySelector('.counter')
+        plus.addEventListener('click',function(){
+            counter.innerHTML=Number(counter.innerHTML)+1
+        })
+        minus.addEventListener('click',function(){
+            if (Number(counter.innerHTML)){
+                counter.innerHTML=Number(counter.innerHTML)-1
+            }
+        })
+        //input 
+        var input=document.querySelector('input')
+        input.addEventListener('input',function(e){
+            console.log(e.target.value)
+        })
+    </script>
+</body>
+</html>
